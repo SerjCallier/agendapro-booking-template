@@ -1,0 +1,89 @@
+{
+  "name": "AgendaPro - Get Data (Services/Team/Blog)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "services",
+        "options": {}
+      },
+      "id": "e7b9b1e0-7b3e-4b1a-9c1a-1a2b3c4d5e6f",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        460,
+        240
+      ],
+      "webhookId": "services-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "Servicios"
+        },
+        "options": {}
+      },
+      "id": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        680,
+        240
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_CREDENTIALS_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## DOCUMENTACIÓN\nEste flujo recupera datos de Google Sheets.\n\n**Configuración:**\n1. Cambia el 'Path' en el Webhook si es para Equipo o Blog.\n2. Asegúrate de seleccionar el Documento y la Hoja correcta.\n\n**Debug:**\nUsa 'Test URL' en n8n para pruebas manuales.",
+        "height": 220,
+        "width": 340
+      },
+      "id": "a3b8d1b6-0b3b-4b1a-9c1a-1a2b3c4d5e6f",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        420,
+        20
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "v1",
+  "id": "1",
+  "meta": {
+    "instanceId": "random-id"
+  },
+  "tags": []
+}

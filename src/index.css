@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* AgendaPro Primary - Light Mode (e.g. #c68d49) */
+  --color-primary-50: 251 248 243;
+  --color-primary-100: 245 239 228;
+  --color-primary-200: 234 219 195;
+  --color-primary-300: 222 194 155;
+  --color-primary-400: 208 164 109;
+  --color-primary-500: 198 141 73;
+  --color-primary-600: 184 117 58;
+  --color-primary-700: 152 91 49;
+  --color-primary-800: 125 74 43;
+  --color-primary-900: 101 62 38;
+
+  /* Font Families */
+  --font-sans: 'Inter', ui-sans-serif, system-ui;
+  --font-serif: 'Playfair Display', ui-serif, Georgia;
+  --font-display: 'Outfit', sans-serif;
+}
+
+.dark {
+  /* AgendaPro Primary - Dark Mode (e.g. #d0a46d) */
+  --color-primary-50: 253 252 250;
+  --color-primary-100: 249 245 237;
+  --color-primary-200: 241 230 209;
+  --color-primary-300: 230 211 176;
+  --color-primary-400: 216 181 129;
+  --color-primary-500: 208 164 109;
+  --color-primary-600: 189 140 89;
+  --color-primary-700: 158 112 75;
+  --color-primary-800: 132 94 65;
+  --color-primary-900: 108 80 57;
+}
+
+@layer base {
+  body {
+    @apply antialiased;
+    color: #111827; /* gray-900 */
+    background-color: #ffffff;
+  }
+
+  html.dark body {
+    color: #f3f4f6; /* gray-100 */
+    background-color: #111111; /* dark-900 */
+  }
+}
+

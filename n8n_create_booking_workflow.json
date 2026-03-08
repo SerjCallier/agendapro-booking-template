@@ -1,0 +1,140 @@
+{
+  "name": "AgendaPro - Create Booking (Webhook to Sheets/Calendar)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "booking",
+        "options": {}
+      },
+      "id": "1a2f082d-72a2-b281-0081-8b9cad0e1f20",
+      "name": "Webhook POST",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        380,
+        300
+      ],
+      "webhookId": "booking-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "Turnos"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ $json.fecha }}",
+            "Hora": "={{ $json.hora }}",
+            "Cliente": "={{ $json.cliente }}",
+            "WhatsApp": "={{ $json.whatsapp }}",
+            "Servicio": "={{ $json.servicio }}",
+            "Estado": "Pendiente"
+          }
+        },
+        "options": {}
+      },
+      "id": "b4c9e2c7-1c4c-5c2b-ac2b-2b3c4d5e6f7a",
+      "name": "Google Sheets Append",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        600,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_CREDENTIALS_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": "primary"
+        },
+        "start": "={{ $json.fecha }}T{{ $json.hora }}:00",
+        "end": "={{ $node[\"Webhook POST\"].json[\"fecha\"] }}T{{ $node[\"Webhook POST\"].json[\"hora\"] }}:45",
+        "summary": "=Turno: {{ $json.servicio }} - {{ $json.cliente }}",
+        "additionalFields": {
+          "description": "=WhatsApp: {{ $json.whatsapp }}"
+        }
+      },
+      "id": "c5dae3d8-2d5d-6d3c-bd3c-3c4d5e6f7a8b",
+      "name": "Google Calendar",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        300
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "YOUR_CREDENTIALS_ID",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## GESTIÓN DE TURNOS\n1. Recibe el Webhook del Frontend.\n2. Guarda en la pestaña 'Turnos'.\n3. Crea evento en Calendar.\n\n**VERSIONAMIENTO:**\nSi actualizas n8n y los nodos cambian, usa el buscador de nodos para reemplazar por la versión más reciente manteniendo las expresiones.",
+        "height": 220,
+        "width": 380
+      },
+      "id": "2b30193e-83b3-c392-1192-9cad0e1f2031",
+      "name": "Sticky Note - Guía",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        340,
+        40
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook POST": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets Append",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Append": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "v1",
+  "id": "2",
+  "meta": {
+    "instanceId": "random-id"
+  },
+  "tags": []
+}
