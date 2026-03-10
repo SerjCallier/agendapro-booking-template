@@ -36,10 +36,10 @@ export interface TeamMemberWithSchedule extends TeamMemberData {
 export const businessConfig: BusinessConfig = {
   name: "KlierBook",
   tagline: "Agenda tu turno fácil y rápido",
-  logoSvg: "M14.121 15.536c-1.171 1.952-3.07 1.952-4.242 0-1.172-1.953-1.172-5.119 0-7.072 1.171-1.952 3.07-1.952 4.242 0M8 10.5h4m-4 3h4m9-1.5a9 9 0 11-18 0 9 9 0 0118 0z",
+  logoSvg: "M6 4v16 M17 4l-11 8 11 8 M6 4h5.5c2.5 0 4.5 1.5 4.5 4s-2 4-4.5 4H6 M6 12h6.5c2.5 0 5.5 1.5 5.5 4s-3 4-5.5 4H6",
   theme: {
-    primaryLight: "#c68d49",
-    primaryDark: "#d0a46d",
+    primaryLight: "#9A56EE", // KlierNav Purple
+    primaryDark: "#4F8FDD",  // KlierNav Blue/Cyan vibe
     fontFamily: 'sans'
   },
   contact: {
