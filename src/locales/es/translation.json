@@ -4,6 +4,8 @@
     "subtitle": "Gestión de turnos inteligente",
     "home": {
       "nav": "Inicio",
+      "title": "Agenda tu turno fácil y rápido",
+      "tagline": "Elige el servicio, selecciona el horario que mejor te quede y reserva asegurando tu lugar al instante con una pequeña seña.",
       "ourServices": "Nuestros Servicios",
       "locationTitle": "Visítanos y Relájate",
       "locationSubtitle": "Nos encontramos en el corazón de la ciudad. Reserva tu turno online, acércate y deja que nuestros profesionales se encarguen del resto.",
@@ -13,7 +15,13 @@
       "saturdays": "Sábados:",
       "sundays": "Domingos:",
       "closed": "Cerrado",
-      "cta": "Ver Catálogo y Reservar"
+      "cta": "Ver Catálogo y Reservar",
+      "mapTitle": "Mapa de ubicación del salón",
+      "service": {
+        "S01": { "name": "Corte y Perfilado Asesorado", "desc": "Corte clásico o moderno con perfilado de barba preciso. Incluye lavado." },
+        "S02": { "name": "Tratamiento VIP y Relax", "desc": "Experiencia completa: corte, spa capilar, limpieza facial y tragos de cortesía." },
+        "S03": { "name": "Limpieza Facial Exprés", "desc": "Tratamiento de piel rápido para iluminar y limpiar poros antes de un evento." }
+      }
     },
     "about": {
       "nav": "Nosotros",
@@ -26,7 +34,12 @@
       "pilar2Title": "Precisión",
       "pilar2Desc": "Atención al detalle en cada servicio que ofrecemos.",
       "pilar3Title": "Confianza",
-      "pilar3Desc": "Transparencia y seguridad en la gestión de turnos."
+      "pilar3Desc": "Transparencia y seguridad en la gestión de turnos.",
+      "pro": {
+        "E01": { "rol": "Estilista Principal", "desc": "Especialista en colorimetría, visagismo y diseño de autor." },
+        "E02": { "rol": "Barbero Senior", "desc": "Más de 10 años de experiencia en cortes clásicos y perfilado tradicional." },
+        "E03": { "rol": "Cosmetóloga", "desc": "Experta en cuidado de la piel y tratamientos faciales rejuvenecedores." }
+      }
     },
     "blog": {
       "nav": "Blog",
@@ -35,7 +48,13 @@
       "searchPlaceholder": "Buscar artículos...",
       "readMore": "Leer más",
       "back": "Volver al Blog",
-      "readingTime": "5 min de lectura"
+      "readingTime": "5 min de lectura",
+      "wellnessSpecialist": "Especialista en Bienestar",
+      "category": {
+        "Novedades": "News",
+        "Tendencias": "Trends",
+        "Cuidado": "Care"
+      }
     },
     "common": {
       "back": "Volver",
@@ -56,10 +75,14 @@
       "noSlots": "No hay horarios disponibles para este día con {{profesional}}.",
       "summaryTitle": "Resumen de tu turno",
       "withPro": "con",
+      "onDay": "el",
+      "atTime": "a las",
       "fullName": "Nombre Completo",
       "fullNamePlaceholder": "Ej. Juan Pérez",
       "email": "Correo Electrónico",
+      "emailPlaceholder": "juan@ejemplo.com",
       "phone": "Teléfono (WhatsApp)",
+      "phonePlaceholder": "+54 9 11 ...",
       "depositLabel": "Total a pagar ahora (Seña)",
       "payAndConfirm": "Pagar Seña y Confirmar",
       "successTitle": "¡Turno Reservado con Éxito!",

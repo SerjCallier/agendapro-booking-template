@@ -47,7 +47,7 @@ export const Blog: React.FC = () => {
               </div>
               <div>
                 <p className="font-bold text-gray-900 dark:text-white">{selectedPost.autor}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Especialista en Bienestar</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{t('blog.wellnessSpecialist', 'Especialista en Bienestar')}</p>
               </div>
             </div>
           </header>

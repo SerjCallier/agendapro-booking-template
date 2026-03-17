@@ -171,42 +171,42 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
                   <div>
                     <p className="font-semibold">{t('booking.summaryTitle', 'Resumen de tu turno')}</p>
                     <p className="text-sm mt-1">{service.nombre} {t('booking.withPro', 'con')} {selectedProfessional.nombre}</p>
-                    <p className="text-sm mt-0.5">{selectedSlot && format(new Date(selectedSlot.datetime), "EEEE d 'de' MMMM 'a las' HH:mm", { locale: i18n.language === 'es' ? es : enUS })}hs</p>
+                    <p className="text-sm mt-0.5">{selectedSlot && format(new Date(selectedSlot.datetime), `EEEE d '${t('booking.onDay', 'de')}' MMMM '${t('booking.atTime', 'a las')}' HH:mm`, { locale: i18n.language === 'es' ? es : enUS })}hs</p>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre Completo</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('booking.fullName', 'Nombre Completo')}</label>
                     <input 
                       type="text" 
                       required 
                       value={userData.nombre}
                       onChange={(e) => setUserData({...userData, nombre: e.target.value})}
                       className="w-full px-4 py-2 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-colors text-gray-900 dark:text-white" 
-                      placeholder="Ej. Juan Pérez" 
+                      placeholder={t('booking.fullNamePlaceholder', 'Ej. Juan Pérez')} 
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Correo Electrónico</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('booking.email', 'Correo Electrónico')}</label>
                     <input 
                       type="email" 
                       required 
                       value={userData.email}
                       onChange={(e) => setUserData({...userData, email: e.target.value})}
                       className="w-full px-4 py-2 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-colors text-gray-900 dark:text-white" 
-                      placeholder="juan@ejemplo.com" 
+                      placeholder={t('booking.emailPlaceholder', 'juan@ejemplo.com')} 
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Teléfono (WhatsApp)</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('booking.phone', 'Teléfono (WhatsApp)')}</label>
                     <input 
                       type="tel" 
                       required 
                       value={userData.telefono}
                       onChange={(e) => setUserData({...userData, telefono: e.target.value})}
                       className="w-full px-4 py-2 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none transition-colors text-gray-900 dark:text-white" 
-                      placeholder="+54 9 11 ..." 
+                      placeholder={t('booking.phonePlaceholder', '+54 9 11 ...')} 
                     />
                   </div>
                 </div>

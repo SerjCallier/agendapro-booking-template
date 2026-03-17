@@ -4,6 +4,8 @@
     "subtitle": "Smart Booking Management",
     "home": {
       "nav": "Home",
+      "title": "Book your appointment easy and fast",
+      "tagline": "Choose the service, select the time that fits you best and book securing your spot instantly with a small deposit.",
       "ourServices": "Our Services",
       "locationTitle": "Visit Us and Relax",
       "locationSubtitle": "We are located in the heart of the city. Book your appointment online, come by, and let our professionals take care of the rest.",
@@ -13,7 +15,13 @@
       "saturdays": "Saturdays:",
       "sundays": "Sundays:",
       "closed": "Closed",
-      "cta": "See Catalog & Book"
+      "cta": "See Catalog & Book",
+      "mapTitle": "Saloon location map",
+      "service": {
+        "S01": { "name": "Advised Cut & Grooming", "desc": "Classic or modern cut with precise beard grooming. Includes washing." },
+        "S02": { "name": "VIP Treatment & Relax", "desc": "Complete experience: cut, hair spa, facial cleaning and courtesy drinks." },
+        "S03": { "name": "Express Facial Cleaning", "desc": "Quick skin treatment to brighten and clean pores before an event." }
+      }
     },
     "about": {
       "nav": "About",
@@ -26,7 +34,12 @@
       "pilar2Title": "Precision",
       "pilar2Desc": "Attention to detail in every service we offer.",
       "pilar3Title": "Trust",
-      "pilar3Desc": "Transparency and security in booking management."
+      "pilar3Desc": "Transparency and security in booking management.",
+      "pro": {
+        "E01": { "rol": "Lead Stylist", "desc": "Specialist in colorimetry, visagism and designer styles." },
+        "E02": { "rol": "Senior Barber", "desc": "Over 10 years of experience in classic cuts and traditional grooming." },
+        "E03": { "rol": "Cosmetologist", "desc": "Expert in skin care and rejuvenating facial treatments." }
+      }
     },
     "blog": {
       "nav": "Blog",
@@ -35,7 +48,13 @@
       "searchPlaceholder": "Search articles...",
       "readMore": "Read more",
       "back": "Back to Blog",
-      "readingTime": "5 min read"
+      "readingTime": "5 min read",
+      "wellnessSpecialist": "Wellness Specialist",
+      "category": {
+        "Novedades": "News",
+        "Tendencias": "Trends",
+        "Cuidado": "Care"
+      }
     },
     "common": {
       "back": "Back",
@@ -56,10 +75,14 @@
       "noSlots": "No slots available for this day with {{profesional}}.",
       "summaryTitle": "Appointment Summary",
       "withPro": "with",
+      "onDay": "on",
+      "atTime": "at",
       "fullName": "Full Name",
       "fullNamePlaceholder": "e.g. John Doe",
       "email": "Email Address",
+      "emailPlaceholder": "john@example.com",
       "phone": "Phone (WhatsApp)",
+      "phonePlaceholder": "+1 234 567 ...",
       "depositLabel": "Total due now (Deposit)",
       "payAndConfirm": "Pay Deposit & Confirm",
       "successTitle": "Appointment Booked Successfully!",

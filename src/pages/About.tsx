@@ -45,9 +45,9 @@ export const About: React.FC = () => {
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{member.nombre}</h3>
-                <p className="text-primary-600 dark:text-primary-400 font-medium mb-4">{member.rol}</p>
+                <p className="text-primary-600 dark:text-primary-400 font-medium mb-4">{t(`about.pro.${member.id}.rol`, member.rol)}</p>
                 <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                  {member.descripcion}
+                  {t(`about.pro.${member.id}.desc`, member.descripcion)}
                 </p>
               </div>
             </div>

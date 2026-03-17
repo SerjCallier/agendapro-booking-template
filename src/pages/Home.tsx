@@ -56,7 +56,7 @@ export const Home: React.FC = () => {
     const mapsLink = `https://maps.google.com/?q=${encodeURIComponent(ubicacionNegocio)}`;
 
     const dateLocale = i18n.language === 'es' ? es : enUS;
-    const humanDate = format(startDate, "EEEE d 'de' MMMM 'a las' HH:mm", { locale: dateLocale });
+    const humanDate = format(startDate, `EEEE d '${t('booking.onDay', 'de')}' MMMM '${t('booking.atTime', 'a las')}' HH:mm`, { locale: dateLocale });
     const waMessage = t('booking.whatsappMessage', {
       nombre: reservationData.user.nombre,
       servicio: selectedService.nombre,
@@ -129,10 +129,10 @@ export const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="text-center py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary-50 to-white dark:from-dark-800 dark:to-dark-900 rounded-3xl shadow-sm border border-primary-100 dark:border-dark-700">
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">
-          {businessConfig.tagline}
+          {t('home.title', 'Agenda tu turno fácil y rápido')}
         </h1>
         <p className="max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 mb-10">
-          Elige el servicio, selecciona el horario que mejor te quede y reserva asegurando tu lugar al instante con una pequeña seña.
+          {t('home.tagline', 'Elige el servicio, selecciona el horario que mejor te quede y reserva asegurando tu lugar al instante con una pequeña seña.')}
         </p>
         <button 
           onClick={() => {
@@ -173,14 +173,14 @@ export const Home: React.FC = () => {
 
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {service.nombre}
+                    {t(`home.service.${service.id}.name`, service.nombre)}
                   </h3>
                   <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
                     <Clock className="w-4 h-4 mr-1" />
                     <span>{service.duracionMinutos} min</span>
                   </div>
                   <p className="text-gray-600 dark:text-gray-300 mb-6 text-sm line-clamp-2">
-                    {service.descripcion}
+                    {t(`home.service.${service.id}.desc`, service.descripcion)}
                   </p>
                 </div>
 
@@ -245,7 +245,7 @@ export const Home: React.FC = () => {
               allowFullScreen={true} 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              title="Mapa de ubicación del salón"
+              title={t('home.mapTitle', 'Mapa de ubicación del salón')}
             ></iframe>
           </div>
         </div>
