@@ -1,4 +1,4 @@
-# Especificaciones Técnicas: Flujos n8n para AgendaPro
+# Especificaciones Técnicas: Flujos n8n para KlierBook
 
 Este documento detalla la configuración necesaria para cada nodo en n8n para que la integración con Google Sheets y el Frontend funcione correctamente.
 

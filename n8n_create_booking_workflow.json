@@ -1,5 +1,5 @@
 {
-  "name": "AgendaPro - Create Booking (Webhook to Sheets/Calendar)",
+  "name": "KlierBook - Create Booking (Webhook to Sheets/Calendar)",
   "nodes": [
     {
       "parameters": {

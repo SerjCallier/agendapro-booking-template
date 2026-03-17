@@ -111,8 +111,8 @@ flowchart TB
 ## Quick Start (Demo Mode)
 
 ```bash
-git clone https://github.com/SerjCallier/agendapro-booking-template
-cd agendapro-booking-template
+git clone https://github.com/SerjCallier/klierbook-booking-app
+cd klierbook-booking-app
 npm install
 npm run dev
 ```

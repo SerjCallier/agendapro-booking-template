@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Calendar, Info, BookOpen, Menu, X, Sun, Moon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { businessConfig } from '../config/businessConfig';
+import { LanguageSelector } from '../components/LanguageSelector';
 
 export const MainLayout: React.FC = () => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -30,9 +33,9 @@ export const MainLayout: React.FC = () => {
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   const navLinks = [
-    { name: 'Reservar Turno', path: '/', icon: <Calendar className="w-5 h-5 mr-2" /> },
-    { name: 'Nosotros', path: '/nosotros', icon: <Info className="w-5 h-5 mr-2" /> },
-    { name: 'Blog', path: '/blog', icon: <BookOpen className="w-5 h-5 mr-2" /> },
+    { name: t('home.nav'), path: '/', icon: <Calendar className="w-5 h-5 mr-2" /> },
+    { name: t('about.nav'), path: '/nosotros', icon: <Info className="w-5 h-5 mr-2" /> },
+    { name: t('blog.nav'), path: '/blog', icon: <BookOpen className="w-5 h-5 mr-2" /> },
   ];
 
   return (
@@ -69,10 +72,12 @@ export const MainLayout: React.FC = () => {
                 </Link>
               ))}
 
+              <LanguageSelector />
+
               {/* Theme Toggle Button Desktop */}
               <button
                 onClick={toggleTheme}
-                className="ml-4 p-2 text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 focus:outline-none transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-dark-800"
+                className="ml-2 p-2 text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 focus:outline-none transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-dark-800"
                 aria-label="Toggle Dark Mode"
               >
                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -87,6 +92,7 @@ export const MainLayout: React.FC = () => {
               >
                 {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
+              <LanguageSelector />
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-dark-800 focus:outline-none"
@@ -131,7 +137,7 @@ export const MainLayout: React.FC = () => {
       <footer className="bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-dark-700 mt-auto transition-colors duration-300">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-3">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} {businessConfig.name}. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} {businessConfig.name}. {t('footer.allRightsReserved', 'Todos los derechos reservados.')}
           </p>
           <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500 uppercase tracking-wider font-medium">
             <span>Powered by</span>

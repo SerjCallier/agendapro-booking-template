@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, Clock, Loader2, CheckCircle2, MapPin, CalendarPlus } from 'lucide-react';
 import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, enUS } from 'date-fns/locale';
+import { useTranslation } from 'react-i18next';
 import { fetchServices, type ServiceData } from '../services/n8nService';
 import { BookingWidget } from '../components/BookingWidget';
 import { businessConfig } from '../config/businessConfig';
 
 export const Home: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const [services, setServices] = useState<ServiceData[]>([]);
   const [loading, setLoading] = useState(true);
   
@@ -53,23 +55,33 @@ export const Home: React.FC = () => {
     const gCalLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(selectedService.nombre + " - " + businessConfig.name)}&dates=${gCalDates}&details=${encodeURIComponent("Turno reservado con éxito en " + businessConfig.name + ".")}&location=${encodeURIComponent(ubicacionNegocio)}`;
     const mapsLink = `https://maps.google.com/?q=${encodeURIComponent(ubicacionNegocio)}`;
 
-    const humanDate = format(startDate, "EEEE d 'de' MMMM 'a las' HH:mm", { locale: es });
-    const waMessage = `Hola! Soy *${reservationData.user.nombre}*. Acabo de reservar mi turno para *${selectedService.nombre}* el *${humanDate}hs*.\n\nMis datos:\n- Email: ${reservationData.user.email}\n- Tel: ${reservationData.user.telefono}\n\nQuiero confirmar mi seña y recibir el comprobante.\n\n📅 _Evento_: ${gCalLink}\n📍 _Ubicación_: ${mapsLink}`;
+    const dateLocale = i18n.language === 'es' ? es : enUS;
+    const humanDate = format(startDate, "EEEE d 'de' MMMM 'a las' HH:mm", { locale: dateLocale });
+    const waMessage = t('booking.whatsappMessage', {
+      nombre: reservationData.user.nombre,
+      servicio: selectedService.nombre,
+      fecha: humanDate,
+      email: reservationData.user.email,
+      tel: reservationData.user.telefono,
+      gCalLink,
+      mapsLink,
+      defaultValue: `Hola! Soy *${reservationData.user.nombre}*. Acabo de reservar mi turno para *${selectedService.nombre}* el *${humanDate}hs*.\n\nMis datos:\n- Email: ${reservationData.user.email}\n- Tel: ${reservationData.user.telefono}\n\nQuiero confirmar mi seña y recibir el comprobante.\n\n📅 _Evento_: ${gCalLink}\n📍 _Ubicación_: ${mapsLink}`
+    });
     const waUrl = `${businessConfig.contact.whatsapp.includes('?') ? businessConfig.contact.whatsapp + '&' : businessConfig.contact.whatsapp + '?'}text=${encodeURIComponent(waMessage)}`;
     return (
       <div className="flex flex-col items-center justify-center py-20 animate-slide-up px-4 text-center">
         <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6">
           <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
         </div>
-        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-4">¡Turno Reservado con Éxito!</h2>
+        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-4">{t('booking.successTitle', '¡Turno Reservado con Éxito!')}</h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-lg mb-8">
-          Hemos recibido tu seña correctamente. Tu turno ya está agendado en nuestro sistema.
+          {t('booking.successMessage', 'Hemos recibido tu seña correctamente. Tu turno ya está agendado en nuestro sistema.')}
         </p>
         
         {/* Mitigación Costos WhatsApp - Call to action del usuario */}
         <div className="bg-white dark:bg-dark-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200 dark:border-dark-700 w-full max-w-xl mx-auto text-left flex flex-col items-center">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-2 text-center">Paso final recomendado:</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 text-center">Te enviamos el detalle por correo, pero si quieres recibir tu comprobante rápido e instrucciones, envíanos un WhatsApp automático.</p>
+          <h3 className="font-semibold text-gray-900 dark:text-white mb-2 text-center">{t('booking.finalStepTitle', 'Paso final recomendado:')}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 text-center">{t('booking.whatsappPrompt', 'Te enviamos el detalle por correo, pero si quieres recibir tu comprobante rápido e instrucciones, envíanos un WhatsApp automático.')}</p>
           
           <div className="flex flex-col sm:flex-row gap-4 w-full mb-6">
             <a 
@@ -79,7 +91,7 @@ export const Home: React.FC = () => {
               className="flex-1 flex items-center justify-center p-3 border border-gray-200 dark:border-dark-600 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-700 transition-colors text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               <CalendarPlus className="w-4 h-4 mr-2 text-primary-600 dark:text-primary-400" />
-              Guardar en Calendar
+              {t('booking.saveToCalendar', 'Guardar en Calendar')}
             </a>
             <a 
               href={mapsLink} 
@@ -88,7 +100,7 @@ export const Home: React.FC = () => {
               className="flex-1 flex items-center justify-center p-3 border border-gray-200 dark:border-dark-600 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-700 transition-colors text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               <MapPin className="w-4 h-4 mr-2 text-primary-600 dark:text-primary-400" />
-              Ver en Mapa
+              {t('booking.viewOnMap', 'Ver en Mapa')}
             </a>
           </div>
 
@@ -98,7 +110,7 @@ export const Home: React.FC = () => {
             rel="noopener noreferrer"
             className="w-full flex items-center justify-center px-4 py-3 border border-transparent rounded-xl shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
           >
-            Confirmar por WhatsApp
+            {t('booking.confirmWhatsApp', 'Confirmar por WhatsApp')}
           </a>
         </div>
 
@@ -106,7 +118,7 @@ export const Home: React.FC = () => {
           onClick={() => setBookingSuccess(false)}
           className="mt-8 text-primary-600 dark:text-primary-400 hover:underline font-medium"
         >
-          Volver al catálogo
+          {t('booking.backToCatalog', 'Volver al catálogo')}
         </button>
       </div>
     );
@@ -129,7 +141,7 @@ export const Home: React.FC = () => {
           }}
           className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-primary-600 hover:bg-primary-700 shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1">
           <Calendar className="w-5 h-5 mr-2" />
-          Ver Catálogo y Reservar
+          {t('home.cta', 'Ver Catálogo y Reservar')}
         </button>
       </section>
 
@@ -138,7 +150,7 @@ export const Home: React.FC = () => {
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
             <Clock className="w-6 h-6 mr-2 text-primary-500" />
-            Nuestros Servicios
+            {t('home.ourServices', 'Nuestros Servicios')}
           </h2>
         </div>
         
@@ -179,7 +191,7 @@ export const Home: React.FC = () => {
                   <button 
                     onClick={() => handleOpenWidget(service)}
                     className="flex items-center font-medium text-white bg-gray-900 dark:bg-white dark:text-gray-900 px-4 py-2 rounded-lg hover:bg-primary-600 dark:hover:bg-primary-500 dark:hover:text-white transition-colors">
-                    Reservar
+                    {t('booking.reserve', 'Reservar')}
                   </button>
                 </div>
               </div>
@@ -192,9 +204,9 @@ export const Home: React.FC = () => {
       <section className="py-16 border-t border-gray-100 dark:border-dark-800">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Visítanos y Relájate</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">{t('home.locationTitle', 'Visítanos y Relájate')}</h2>
             <p className="text-gray-500 dark:text-gray-400 mb-8 text-lg">
-              Nos encontramos en el corazón de la ciudad. Reserva tu turno online, acércate y deja que nuestros profesionales se encarguen del resto.
+              {t('home.locationSubtitle', 'Nos encontramos en el corazón de la ciudad. Reserva tu turno online, acércate y deja que nuestros profesionales se encarguen del resto.')}
             </p>
             
             <div className="space-y-6">
@@ -203,7 +215,7 @@ export const Home: React.FC = () => {
                   <MapPin className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                 </div>
                 <div className="ml-5">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Ubicación</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('home.locationLabel', 'Ubicación')}</h3>
                   <p className="text-gray-500 dark:text-gray-400 mt-1">{businessConfig.contact.address.split(',').slice(0, 2).join(',')}<br />{businessConfig.contact.address.split(',').slice(2).join(',')}</p>
                 </div>
               </div>
@@ -213,11 +225,11 @@ export const Home: React.FC = () => {
                   <Clock className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                 </div>
                 <div className="ml-5">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Horarios de Atención</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('home.hoursTitle', 'Horarios de Atención')}</h3>
                   <ul className="text-gray-500 dark:text-gray-400 mt-1 space-y-1">
-                    <li><strong className="font-medium text-gray-700 dark:text-gray-300">Lun a Vie:</strong> 09:00 - 20:00</li>
-                    <li><strong className="font-medium text-gray-700 dark:text-gray-300">Sábados:</strong> 10:00 - 18:00</li>
-                    <li><strong className="font-medium text-gray-700 dark:text-gray-300">Domingos:</strong> Cerrado</li>
+                    <li><strong className="font-medium text-gray-700 dark:text-gray-300">{t('home.weekdays', 'Lun a Vie:')}</strong> 09:00 - 20:00</li>
+                    <li><strong className="font-medium text-gray-700 dark:text-gray-300">{t('home.saturdays', 'Sábados:')}</strong> 10:00 - 18:00</li>
+                    <li><strong className="font-medium text-gray-700 dark:text-gray-300">{t('home.sundays', 'Domingos:')}</strong> {t('home.closed', 'Cerrado')}</li>
                   </ul>
                 </div>
               </div>

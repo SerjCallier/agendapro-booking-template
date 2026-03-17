@@ -31,7 +31,7 @@ Variables globales que la app frontend puede consumir.
 
 | Clave | Valor |
 |-------|-------|
-| BUSINESS_NAME | AgendaPro |
+| BUSINESS_NAME | KlierBook |
 | WHATSAPP_NUMBER | +5491123456789 |
 | WHATSAPP_MESSAGE | Hola! Quería confirmar mi turno y recibir el comprobante. |
 

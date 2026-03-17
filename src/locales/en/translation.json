@@ -1,0 +1,75 @@
+{
+  "translation": {
+    "welcome": "Welcome to KlierBook",
+    "subtitle": "Smart Booking Management",
+    "home": {
+      "nav": "Home",
+      "ourServices": "Our Services",
+      "locationTitle": "Visit Us and Relax",
+      "locationSubtitle": "We are located in the heart of the city. Book your appointment online, come by, and let our professionals take care of the rest.",
+      "locationLabel": "Location",
+      "hoursTitle": "Business Hours",
+      "weekdays": "Mon to Fri:",
+      "saturdays": "Saturdays:",
+      "sundays": "Sundays:",
+      "closed": "Closed",
+      "cta": "See Catalog & Book"
+    },
+    "about": {
+      "nav": "About",
+      "title": "Meet our team",
+      "subtitle": "Passionate professionals dedicated to giving you the best service. Meet them below.",
+      "loading": "Loading our specialists...",
+      "pilarsTitle": "Our Pillars",
+      "pilar1Title": "Experience",
+      "pilar1Desc": "Years of experience guarantee our level of service.",
+      "pilar2Title": "Precision",
+      "pilar2Desc": "Attention to detail in every service we offer.",
+      "pilar3Title": "Trust",
+      "pilar3Desc": "Transparency and security in booking management."
+    },
+    "blog": {
+      "nav": "Blog",
+      "title": "Blog & News",
+      "subtitle": "Expert advice and updates on our services.",
+      "searchPlaceholder": "Search articles...",
+      "readMore": "Read more",
+      "back": "Back to Blog",
+      "readingTime": "5 min read"
+    },
+    "common": {
+      "back": "Back",
+      "continue": "Continue"
+    },
+    "footer": {
+      "allRightsReserved": "All rights reserved."
+    },
+    "booking": {
+      "modalTitle": "Book Appointment",
+      "selectService": "Select a service",
+      "selectDate": "Select date and time",
+      "confirm": "Confirm Booking",
+      "reserve": "Book Now",
+      "selectProfessional": "Select a professional",
+      "selectDay": "Select a day",
+      "availableSlots": "Available Slots",
+      "noSlots": "No slots available for this day with {{profesional}}.",
+      "summaryTitle": "Appointment Summary",
+      "withPro": "with",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "e.g. John Doe",
+      "email": "Email Address",
+      "phone": "Phone (WhatsApp)",
+      "depositLabel": "Total due now (Deposit)",
+      "payAndConfirm": "Pay Deposit & Confirm",
+      "successTitle": "Appointment Booked Successfully!",
+      "successMessage": "We have received your deposit. Your appointment is now scheduled in our system.",
+      "finalStepTitle": "Recommended final step:",
+      "whatsappPrompt": "We have sent the details to your email, but if you want to receive your receipt and instructions quickly, send us an automatic WhatsApp.",
+      "saveToCalendar": "Save to Calendar",
+      "viewOnMap": "View on Map",
+      "confirmWhatsApp": "Confirm via WhatsApp",
+      "backToCatalog": "Back to catalog"
+    }
+  }
+}

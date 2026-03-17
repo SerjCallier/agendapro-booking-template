@@ -22,7 +22,7 @@ export const mockBlogPosts: BlogPostData[] = [
     extracto: "Descubre cuáles son los estilos que más están pidiendo nuestros clientes este mes.",
     contenidoHtml: "<p>Contenido completo del blog...</p>",
     fecha: "2026-02-20",
-    autor: "AgendaPro Team",
+    autor: "KlierBook Team",
     imagenUrl: "https://images.unsplash.com/photo-1520338661084-6b998782a176?auto=format&fit=crop&q=80&w=800"
   }
 ];

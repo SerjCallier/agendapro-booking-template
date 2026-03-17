@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { format, addDays, startOfWeek, isSameDay } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { es, enUS } from 'date-fns/locale';
+import { useTranslation } from 'react-i18next';
 import { Loader2, Calendar as CalendarIcon, Clock, User } from 'lucide-react';
 import { fetchAvailableSlots, type BookingSlot } from '../services/calendarService';
 import { type ServiceData } from '../services/n8nService';
@@ -13,6 +14,7 @@ interface BookingWidgetProps {
 }
 
 export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, onReserve }) => {
+  const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [slots, setSlots] = useState<BookingSlot[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
@@ -54,7 +56,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
         {/* Header */}
         <div className="px-6 py-4 border-b border-gray-200 dark:border-dark-700 flex justify-between items-center bg-gray-50 dark:bg-dark-800">
           <div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white">Agendar Turno</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t('booking.modalTitle', 'Agendar Turno')}</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400">{service.nombre} • {service.duracionMinutos} min</p>
           </div>
           <button onClick={onClose} className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors">
@@ -70,7 +72,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
               <div>
                 <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-4 flex items-center">
                   <User className="w-5 h-5 mr-2 text-primary-500" />
-                  Selecciona un profesional
+                  {t('booking.selectProfessional', 'Selecciona un profesional')}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {defaultTeam.map((pro) => (
@@ -98,7 +100,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-medium text-gray-900 dark:text-gray-100 flex items-center">
                     <CalendarIcon className="w-5 h-5 mr-2 text-primary-500" />
-                    Selecciona un día
+                    {t('booking.selectDay', 'Selecciona un día')}
                   </h4>
                 </div>
                 
@@ -113,7 +115,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
                           : 'border-gray-200 dark:border-dark-700 text-gray-600 dark:text-gray-400 hover:border-primary-300 dark:hover:border-primary-700'
                       }`}
                     >
-                      <span className="text-xs font-medium uppercase mb-1">{format(date, 'EEE', { locale: es })}</span>
+                      <span className="text-xs font-medium uppercase mb-1">{format(date, 'EEE', { locale: i18n.language === 'es' ? es : enUS })}</span>
                       <span className="text-xl font-bold">{format(date, 'd')}</span>
                     </button>
                   ))}
@@ -124,7 +126,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
               <div>
                 <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-4 flex items-center">
                   <Clock className="w-5 h-5 mr-2 text-primary-500" />
-                  Horarios Disponibles
+                  {t('booking.availableSlots', 'Horarios Disponibles')}
                 </h4>
                 
                 {loadingSlots ? (
@@ -135,7 +137,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
                   <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
                     {slots.filter(s => s.available).length === 0 ? (
                       <div className="col-span-full text-center py-6 text-gray-500 dark:text-gray-400">
-                        No hay horarios disponibles para este día con {selectedProfessional.nombre}.
+                        {t('booking.noSlots', 'No hay horarios disponibles para este día con {{profesional}}.', { profesional: selectedProfessional.nombre })}
                       </div>
                     ) : (
                       slots.map((slot, i) => {
@@ -167,9 +169,9 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
                 <div className="bg-primary-50 dark:bg-primary-900/20 text-primary-800 dark:text-primary-300 p-4 rounded-xl flex items-start">
                   <CalendarIcon className="w-5 h-5 mr-3 mt-0.5" />
                   <div>
-                    <p className="font-semibold">Resumen de tu turno</p>
-                    <p className="text-sm mt-1">{service.nombre} con {selectedProfessional.nombre}</p>
-                    <p className="text-sm mt-0.5">{selectedSlot && format(new Date(selectedSlot.datetime), "EEEE d 'de' MMMM 'a las' HH:mm", { locale: es })}hs</p>
+                    <p className="font-semibold">{t('booking.summaryTitle', 'Resumen de tu turno')}</p>
+                    <p className="text-sm mt-1">{service.nombre} {t('booking.withPro', 'con')} {selectedProfessional.nombre}</p>
+                    <p className="text-sm mt-0.5">{selectedSlot && format(new Date(selectedSlot.datetime), "EEEE d 'de' MMMM 'a las' HH:mm", { locale: i18n.language === 'es' ? es : enUS })}hs</p>
                   </div>
                 </div>
 
@@ -210,8 +212,8 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
                 </div>
 
               <div className="bg-gray-50 dark:bg-dark-800 p-4 rounded-xl border border-gray-200 dark:border-dark-700 flex justify-between items-center mt-6">
-                 <span className="text-gray-600 dark:text-gray-400">Total a pagar ahora (Seña)</span>
-                 <span className="text-2xl font-bold text-gray-900 dark:text-white">$ {(service.precio * 0.3).toLocaleString()} <span className="text-sm font-normal text-gray-500">ARS</span></span>
+                 <span className="text-gray-600 dark:text-gray-400">{t('booking.depositLabel', 'Total a pagar ahora (Seña)')}</span>
+                 <span className="text-2xl font-bold text-gray-900 dark:text-white">$ {(service.precio * 0.3).toLocaleString()} <span className="text-sm font-normal text-gray-500">{service.moneda}</span></span>
               </div>
             </div>
           )}
@@ -221,7 +223,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
         <div className="px-6 py-4 border-t border-gray-200 dark:border-dark-700 bg-gray-50 dark:bg-dark-800 flex justify-end space-x-3">
           {step === 2 && (
             <button onClick={() => setStep(1)} className="px-5 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-dark-900 border border-gray-300 dark:border-dark-600 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-800 transition-colors">
-              Volver
+              {t('common.back', 'Volver')}
             </button>
           )}
           <button
@@ -233,7 +235,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ service, onClose, 
                 : 'bg-primary-600 hover:bg-primary-700 hover:shadow-md'
             }`}
           >
-            {step === 1 ? 'Continuar' : 'Pagar Seña y Confirmar'}
+            {step === 1 ? t('common.continue', 'Continuar') : t('booking.payAndConfirm', 'Pagar Seña y Confirmar')}
           </button>
         </div>
       </div>

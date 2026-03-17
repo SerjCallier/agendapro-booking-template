@@ -1,0 +1,75 @@
+{
+  "translation": {
+    "welcome": "Bienvenido a KlierBook",
+    "subtitle": "Gestión de turnos inteligente",
+    "home": {
+      "nav": "Inicio",
+      "ourServices": "Nuestros Servicios",
+      "locationTitle": "Visítanos y Relájate",
+      "locationSubtitle": "Nos encontramos en el corazón de la ciudad. Reserva tu turno online, acércate y deja que nuestros profesionales se encarguen del resto.",
+      "locationLabel": "Ubicación",
+      "hoursTitle": "Horarios de Atención",
+      "weekdays": "Lun a Vie:",
+      "saturdays": "Sábados:",
+      "sundays": "Domingos:",
+      "closed": "Cerrado",
+      "cta": "Ver Catálogo y Reservar"
+    },
+    "about": {
+      "nav": "Nosotros",
+      "title": "Conoce a nuestro equipo",
+      "subtitle": "Profesionales apasionados y dedicados a brindarte la mejor atención. Conócelos a continuación.",
+      "loading": "Cargando a nuestros especialistas...",
+      "pilarsTitle": "Nuestros Pilares",
+      "pilar1Title": "Experiencia",
+      "pilar1Desc": "Años de trayectoria garantizan nuestro nivel de servicio.",
+      "pilar2Title": "Precisión",
+      "pilar2Desc": "Atención al detalle en cada servicio que ofrecemos.",
+      "pilar3Title": "Confianza",
+      "pilar3Desc": "Transparencia y seguridad en la gestión de turnos."
+    },
+    "blog": {
+      "nav": "Blog",
+      "title": "Blog y Novedades",
+      "subtitle": "Consejos de especialistas y actualizaciones sobre nuestros servicios.",
+      "searchPlaceholder": "Buscar artículos...",
+      "readMore": "Leer más",
+      "back": "Volver al Blog",
+      "readingTime": "5 min de lectura"
+    },
+    "common": {
+      "back": "Volver",
+      "continue": "Continuar"
+    },
+    "footer": {
+      "allRightsReserved": "Todos los derechos reservados."
+    },
+    "booking": {
+      "modalTitle": "Agendar Turno",
+      "selectService": "Selecciona un servicio",
+      "selectDate": "Selecciona fecha y hora",
+      "confirm": "Confirmar Reserva",
+      "reserve": "Reservar",
+      "selectProfessional": "Selecciona un profesional",
+      "selectDay": "Selecciona un día",
+      "availableSlots": "Horarios Disponibles",
+      "noSlots": "No hay horarios disponibles para este día con {{profesional}}.",
+      "summaryTitle": "Resumen de tu turno",
+      "withPro": "con",
+      "fullName": "Nombre Completo",
+      "fullNamePlaceholder": "Ej. Juan Pérez",
+      "email": "Correo Electrónico",
+      "phone": "Teléfono (WhatsApp)",
+      "depositLabel": "Total a pagar ahora (Seña)",
+      "payAndConfirm": "Pagar Seña y Confirmar",
+      "successTitle": "¡Turno Reservado con Éxito!",
+      "successMessage": "Hemos recibido tu seña correctamente. Tu turno ya está agendado en nuestro sistema.",
+      "finalStepTitle": "Paso final recomendado:",
+      "whatsappPrompt": "Te enviamos el detalle por correo, pero si quieres recibir tu comprobante rápido e instrucciones, envíanos un WhatsApp automático.",
+      "saveToCalendar": "Guardar en Calendar",
+      "viewOnMap": "Ver en Mapa",
+      "confirmWhatsApp": "Confirmar por WhatsApp",
+      "backToCatalog": "Volver al catálogo"
+    }
+  }
+}

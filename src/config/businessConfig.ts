@@ -47,10 +47,10 @@ export const businessConfig: BusinessConfig = {
     whatsapp: "https://wa.me/5491122334455",
     address: "Palermo Soho, Buenos Aires, Argentina",
     addressLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13136.06685000989!2d-58.43574825946571!3d-34.58882012017772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5818987b2fd%3A0x6bba3dd2cc08f58b!2sPalermo%20Soho%2C%20CABA!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar",
-    email: "hola@agendapro.com"
+    email: "hola@klierbook.com"
   },
   social: {
-    instagram: "https://instagram.com/agendapro"
+    instagram: "https://instagram.com/kliernav"
   }
 };
 
@@ -60,7 +60,7 @@ export const defaultTeam: TeamMemberWithSchedule[] = [
     nombre: "Ana García",
     rol: "Estilista Principal",
     descripcion: "Especialista en colorimetría, visagismo y diseño de autor.",
-    imagenUrl: "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=400",
+    imagenUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400",
     schedule: { start: "09:00", end: "15:00", days: [1, 2, 3, 4, 5] }
   },
   {
@@ -68,7 +68,7 @@ export const defaultTeam: TeamMemberWithSchedule[] = [
     nombre: "Carlos Ruiz",
     rol: "Barbero Senior",
     descripcion: "Más de 10 años de experiencia en cortes clásicos y perfilado tradicional.",
-    imagenUrl: "https://images.unsplash.com/photo-1618077360395-f3068be8e001?auto=format&fit=crop&q=80&w=400",
+    imagenUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400",
     schedule: { start: "12:00", end: "20:00", days: [2, 3, 4, 5, 6] }
   },
   {
@@ -76,7 +76,7 @@ export const defaultTeam: TeamMemberWithSchedule[] = [
     nombre: "Lucía Fernández",
     rol: "Cosmetóloga",
     descripcion: "Experta en cuidado de la piel y tratamientos faciales rejuvenecedores.",
-    imagenUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
+    imagenUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400",
     schedule: { start: "10:00", end: "18:00", days: [1, 3, 5] }
   }
 ];
