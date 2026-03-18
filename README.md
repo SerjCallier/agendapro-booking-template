@@ -1,4 +1,4 @@
-# KlierBook — Booking SaaS Template
+# AgendaPro — Booking SaaS Template
 
 **English** | [Español](#español)
 
@@ -111,94 +111,39 @@ flowchart TB
 ## Quick Start (Demo Mode)
 
 ```bash
-git clone https://github.com/SerjCallier/klierbook-booking-app
-cd klierbook-booking-app
+git clone https://github.com/SerjCallier/agendapro-booking-template
+cd agendapro-booking-template
 npm install
 npm run dev
 ```
 
-The app runs fully in demo mode with mock data — no backend required.
+## 🏗️ Integración n8n (Concepto)
 
----
+*(Nota: Se debe contar previamente con todas las API y credenciales correspondientes configuradas en Google Cloud Platform).*
 
-## Connecting the Backend
+La aplicación está diseñada para enviar el payload de reserva a una URL de webhook. Una vez que la reserva se confirma en el Frontend, los datos viajan hacia un escenario en **n8n** que se encarga de:
+1. Registrar la fila en Google Sheets.
+2. Enviar el email de confirmación (vía SMTP/Gmail).
+3. Añadir el evento a Google Calendar.
 
-1. Import `n8n_get_data_workflow.json` and `n8n_create_booking_workflow.json` into your n8n instance
-2. Create a Google Sheet following `src/database_schema.md`
-3. Activate the webhooks in n8n (copy the Production URLs)
-4. Fill in `.env` with your webhook URLs:
+### Flujo de Arquitectura
 
-```env
-VITE_N8N_SERVICES_URL=https://your-n8n.cloud/webhook/services
-VITE_N8N_TEAM_URL=https://your-n8n.cloud/webhook/team
-VITE_N8N_BLOG_URL=https://your-n8n.cloud/webhook/blog
-VITE_N8N_BOOKING_URL=https://your-n8n.cloud/webhook/booking
+```mermaid
+sequenceDiagram
+    participant User as Cliente Final
+    participant React as Frontend (React)
+    participant n8n as n8n Webhook
+    participant GCP as Google Cloud (Sheets/Calendar)
+    participant Mail as Servicio SMTP
+
+    User->>React: Selecciona turno y confirma
+    React->>n8n: POST Payload (Datos de reserva)
+    n8n->>GCP: Registra reserva en Sheets
+    n8n->>GCP: Añade Evento a Calendar
+    n8n->>Mail: Envía correo de confirmación
+    Mail-->>User: Email recibido
 ```
 
 ---
 
-## Rebranding (For Clients)
-
-Edit a single file: `src/config/businessConfig.ts`
-
-```ts
-export const businessConfig = {
-  name: "Tu Negocio",
-  tagline: "Tu slogan aquí",
-  theme: {
-    primaryLight: "#c68d49",  // brand color light mode
-    primaryDark:  "#d0a46d",  // brand color dark mode
-  },
-  contact: {
-    phone: "+54 9 11 ...",
-    whatsapp: "https://wa.me/549...",
-    address: "Tu dirección",
-  },
-  // ... team, services, social
-};
-```
-
----
-
-## Roadmap
-
-- [ ] MercadoPago Checkout integration (deposit payment)
-- [ ] Real-time slot validation via Google Calendar
-- [ ] Admin panel (edit services/team without touching code)
-- [ ] Email confirmation via n8n + Gmail node
-
----
-
-## Background
-
-This project is part of the **KlierNav** toolkit — a set of production-ready starters and automation templates I build for small and medium businesses in Argentina.
-
-The goal is to give local businesses the kind of booking experience that usually costs thousands of dollars per month (Calendly, Acuity, etc.) with zero SaaS subscription fees.
-
----
-
-<a name="español"></a>
-
-## 🇦🇷 Español
-
-Soy Sergio Callier, Ingeniero en Electrónica y Telecomunicaciones (UTN). Construyo sistemas de automatización y herramientas con IA para problemas concretos de negocio.
-
-Este repositorio es un template de frontend listo para producción para **sistemas de reserva de turnos**, orientado a negocios de estética, bienestar y servicios. Se conecta a un backend de automatización en n8n y usa Google Sheets como CMS/base de datos de costo cero.
-
-### Qué hay acá
-
-- **`businessConfig.ts`** — archivo único para rebrandear toda la app: nombre, colores, equipo, servicios, contacto.
-- **`BookingWidget`** — modal de reserva completo: selector de profesional, carrusel de fechas, slots de horario, formulario de datos personales.
-- **Workflows n8n** — listos para importar. Conexión con Google Sheets para lectura de catálogo y escritura de reservas.
-- **Modo demo** — la app funciona sin backend conectado gracias a datos mock de fallback.
-- **WhatsApp deep-link** — post-reserva genera un mensaje pre-escrito para confirmar la seña por WhatsApp.
-
-### Contexto
-
-Este proyecto es parte del toolkit **KlierNav** — un conjunto de starters y templates de automatización que construyo para pequeñas y medianas empresas en Argentina.
-
-El objetivo: darle a los negocios locales la experiencia de booking que normalmente cuesta miles de dólares por mes (Calendly, Acuity, etc.) con cero subscripción a SaaS.
-
----
-
-> Built by [Sergio Callier](https://github.com/SerjCallier) · Powered by **KlierNav**
+*Desarrollado y mantenido por [KlierNav Innovations](https://www.kliernav.com.ar).*
