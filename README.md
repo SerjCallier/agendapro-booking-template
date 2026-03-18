@@ -1,121 +1,39 @@
-# AgendaPro — Booking SaaS Template
+# 📅 AgendaPro Booking Template
 
-**English** | [Español](#español)
+Plantilla de Frontend para una aplicación SaaS de reservas y gestión de citas, diseñada para el sector de estética, barberías, consultorios y servicios profesionales.
 
-I'm Sergio Callier, Electronics & Telecommunications Engineer (UTN, Argentina). I build automation systems and AI-powered tools for real business problems.
-
-This repository is a production-ready frontend template for **appointment booking systems** targeting beauty, wellness, and service businesses. It connects to a n8n automation backend and uses Google Sheets as a zero-cost CMS/database.
+Desarrollada bajo el ala de **KlierNav Innovations**, esta aplicación está pensada para integrarse fluidamente con un backend sin código vía **n8n** y **Google Sheets**, ofreciendo una solución de "suscripción cero" para negocios de entrada, con proyección de escalar hacia arquitecturas más robustas, previsibles y maduras junto al crecimiento del cliente.
 
 ---
 
-## Architecture Overview
+## 🚀 Características Principales
 
-```mermaid
-flowchart TB
-    subgraph frontend ["🖥️ Frontend (React + Vite)"]
-        A["Home — Service Catalog"]
-        B["BookingWidget — Modal"]
-        C["About — Team"]
-        D["Blog — Content"]
-    end
+- **Flujo de Reservas Intuitivo:** Selección de servicios, profesionales y fechas en pasos sin fricción.
+- **Diseño Premium:** Interfaz de usuario pulida con Tailwind CSS, optimizada para conversión móvil.
+- **Temetización Dinámica:** Paletas de colores adaptables a diferentes rubros (ej. Dark mode para barberías, colores cálidos para salones de uñas).
+- **Integración Nocode:** Preparado para mandar datos directamente a webhooks de n8n para orquestar correos de confirmación y Google Sheets.
 
-    subgraph config ["⚙️ Config Layer"]
-        E["businessConfig.ts\nName, theme, contact,\nteam & services (fallback)"]
-        F["types.ts\nShared interfaces"]
-    end
+## 🛠️ Stack Tecnológico
 
-    subgraph backend ["🔄 n8n Automation Backend"]
-        G["Webhook GET /services"]
-        H["Webhook GET /team"]
-        I["Webhook GET /blog"]
-        J["Webhook POST /booking"]
-    end
+- **Framework:** React 19 + TypeScript
+- **Build Tool:** Vite
+- **Estilos:** Tailwind CSS
+- **Iconos:** Lucide React
 
-    subgraph data ["📊 Data Layer"]
-        K[("Google Sheets\nServices | Team | Blog | Turnos")]
-        L["Google Calendar\n(Optional: slot validation)"]
-    end
+## 📦 Uso Rápido (Desarrollo Local)
 
-    subgraph payment ["💳 Payment (Pending)"]
-        M["MercadoPago Checkout"]
-    end
-
-    A -->|fetchServices| G
-    C -->|fetchTeamMembers| H
-    D -->|fetchBlogPosts| I
-    B -->|createBooking POST| J
-
-    G --> K
-    H --> K
-    I --> K
-    J --> K
-    J -.->|create event| L
-
-    B -.->|seña| M
-
-    E --> A
-    F --> E
-    F --> G
-```
-
----
-
-## What's here
-
-| File / Folder | What it does |
-|---|---|
-| `src/pages/Home.tsx` | Service catalog with booking CTA, map section, success flow with WhatsApp deep-link |
-| `src/pages/About.tsx` | Team section, dynamically loaded from n8n / fallback config |
-| `src/pages/Blog.tsx` | Filterable article list, loaded from Google Sheets via n8n |
-| `src/components/BookingWidget.tsx` | Full booking modal: professional selector, date carousel, time slots, personal data form, deposit summary |
-| `src/layouts/MainLayout.tsx` | Navbar with glassmorphism, dark/light toggle, responsive mobile menu, KlierNav footer |
-| `src/services/n8nService.ts` | HTTP client for all n8n webhooks, with mock fallback for offline dev |
-| `src/services/calendarService.ts` | Slot availability fetcher (mock-ready, connects to Google Calendar via n8n) |
-| `src/config/businessConfig.ts` | Single file to rebrand the entire app: name, logo, colors, contact, team, services |
-| `src/types.ts` | Shared TypeScript interfaces (breaks circular dependency between services and config) |
-| `n8n_get_data_workflow.json` | n8n workflow: GET webhooks for services, team, and blog from Google Sheets |
-| `n8n_create_booking_workflow.json` | n8n workflow: POST booking → append to Google Sheets → (optional) Google Calendar event |
-| `n8n_workflows_specs.md` | Technical spec for configuring n8n nodes and the Google Sheets column format |
-| `src/database_schema.md` | Google Sheets structure required for the backend to work |
-
----
-
-## Features
-
-- **Zero-backend-cost**: Google Sheets as CMS + n8n as middleware. No database to pay for.
-- **Instant rebrand**: change `businessConfig.ts` → new business, colors, team, services. One file.
-- **Offline-safe**: all data fetchers have mock fallback — the app works without n8n connected.
-- **Dark/light mode**: system-aware default with toggle, persisted to localStorage.
-- **Glassmorphism UI**: premium feel with Tailwind custom palettes, Inter font, smooth animations.
-- **WhatsApp deep-link**: after booking, generates a pre-filled WhatsApp message for the business to confirm.
-- **Google Calendar link**: post-booking flow offers an "Add to Google Calendar" button.
-- **Professional selector**: clients choose which team member to book with.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | React 19 + TypeScript + Vite 7 |
-| Styling | Tailwind CSS v3 + CSS custom properties |
-| Routing | React Router v7 |
-| Icons | Lucide React |
-| Date handling | date-fns v4 |
-| Automation backend | n8n (self-hosted or cloud) |
-| Database | Google Sheets |
-| Hosting (suggested) | Vercel / Netlify |
-
----
-
-## Quick Start (Demo Mode)
-
-```bash
-git clone https://github.com/SerjCallier/agendapro-booking-template
-cd agendapro-booking-template
-npm install
-npm run dev
-```
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/SerjCallier/agendapro-booking-template.git
+   ```
+2. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+3. Iniciar el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
 
 ## 🏗️ Integración n8n (Concepto)
 
@@ -130,20 +48,52 @@ La aplicación está diseñada para enviar el payload de reserva a una URL de we
 
 ```mermaid
 sequenceDiagram
-    participant User as Cliente Final
-    participant React as Frontend (React)
+    participant User as End Client
+    participant React as Klierbook Front
     participant n8n as n8n Webhook
     participant GCP as Google Cloud (Sheets/Calendar)
-    participant Mail as Servicio SMTP
+    participant Mail as SMTP Service
 
-    User->>React: Selecciona turno y confirma
-    React->>n8n: POST Payload (Datos de reserva)
-    n8n->>GCP: Registra reserva en Sheets
-    n8n->>GCP: Añade Evento a Calendar
-    n8n->>Mail: Envía correo de confirmación
-    Mail-->>User: Email recibido
+    User->>React: Select slot & confirm
+    React->>n8n: POST Payload (Booking Data)
+    n8n->>GCP: Log entry in Sheets
+    n8n->>GCP: Add Event to Calendar
+    n8n->>Mail: Trigger confirmation email
+    Mail-->>User: Booking Confirmed!
 ```
 
 ---
 
-*Desarrollado y mantenido por [KlierNav Innovations](https://www.kliernav.com.ar).*
+## 🛠️ Stack
+
+- **Framework:** React 19 + TypeScript
+- **Styling:** Tailwind CSS
+- **Orchestration:** n8n / Webhooks
+
+---
+
+*Engineered by [KlierNav Innovations](https://www.kliernav.com).*
+
+---
+
+<details>
+<summary>🇦🇷 Versión en Español</summary>
+
+## 📅 Klierbook
+
+Plantilla Frontend premium para sistemas SaaS de reservas y gestión de citas. Diseñada para negocios de estética, barberías, consultorios y servicios profesionales.
+
+Creada por **KlierNav Innovations**, integra a la perfección con **n8n** y **Google Sheets** para una solución de entrada sin suscripción que escala hacia arquitecturas empresariales.
+
+### 🚀 Características Principales
+- **Flujo de Reservas sin Fricción:** Selección intuitiva de servicios y profesionales.
+- **UI de Alto Nivel:** Pulida con Tailwind CSS, optimizada para conversión móvil.
+- **Tematización Dinámica:** Paletas adaptables por rubro (Dark/Luxury/Clean).
+- **Nativo para n8n:** Dispara webhooks para confirmación automática y sincronización de calendario.
+
+### 🛠️ Stack
+- **Framework:** React 19 + TypeScript
+- **Estilos:** Tailwind CSS
+- **Orquestación:** n8n / Webhooks
+
+</details>
