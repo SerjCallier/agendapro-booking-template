@@ -24,7 +24,7 @@ Desarrollada bajo el ala de **KlierNav Innovations**, esta aplicación está pen
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/SerjCallier/agendapro-booking-template.git
+   git clone ./docs/assets/
    ```
 2. Instalar dependencias:
    ```bash
