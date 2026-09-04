@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Search, Loader2, Calendar, User, ArrowLeft, Clock } from 'lucide-react';
+import { Search, Loader2, Calendar, ArrowLeft, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { fetchBlogPosts, type BlogPostData } from '../services/n8nService';
 
@@ -62,17 +62,17 @@ export const Blog: React.FC = () => {
             </p>
             <div className="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                En la agenda online, cada detalle cuenta para que la experiencia del cliente sea impecable. Gestión de turnos, recordatorios automáticos y cobro de una pequeña seña por adelantado reducen las ausencias y mejoran la ocupación de tu agenda sin fricciones.
               </p>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">El camino hacia el bienestar</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">El camino hacia un negocio más ordenado</h3>
               <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Digitalizar la reserva no solo facilita la vida de tus clientes: también te da visibilidad sobre tu demanda real, te ayuda a anticipar la carga de trabajo de tu equipo y a comunicarte de forma cercana por WhatsApp cuando realmente importa.
               </p>
               <blockquote className="border-l-4 border-primary-500 pl-6 my-8 italic text-lg text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-dark-800 p-6 rounded-r-xl">
                 "La calidad de nuestra atención define la experiencia del cliente. Cada detalle cuenta en el proceso de transformación personal."
               </blockquote>
               <p>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+                Empezar es más simple de lo que parece: elegí tus servicios, definí tus horarios y compartí tu página con tus clientes habituales. Tu negocio gana una imagen profesional y un canal de reservas que funciona solo, las 24 horas.
               </p>
             </div>
           </div>
