@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Users, Target, ShieldCheck, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { fetchTeamMembers, type TeamMemberData } from '../services/n8nService';
@@ -19,10 +19,10 @@ export const About: React.FC = () => {
     <div className="max-w-6xl mx-auto space-y-16 animate-slide-up pb-12">
       <div className="text-center py-12">
         <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
-          {t('about.title', 'Conoce a nuestro equipo')}
+           {t('about.title', 'KlierBook: La agenda inteligente para tu negocio de belleza')}
         </h1>
         <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-          {t('about.subtitle', 'Profesionales apasionados y dedicados a brindarte la mejor atención. Conócelos a continuación.')}
+           {t('about.subtitle', 'Reduce los no-shows hasta un 80%, aumenta tus ingresos y ahorra tiempo con recordatorios automáticos de WhatsApp y gestión profesional de turnos.')}
         </p>
       </div>
 
@@ -66,15 +66,15 @@ export const About: React.FC = () => {
               <Users className="w-8 h-8 text-primary-600 dark:text-primary-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('about.pilar1Title', 'Experiencia')}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('about.pilar1Desc', 'Años de trayectoria garantizan nuestro nivel de servicio.')}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('about.pilar1Desc', 'AÃ±os de trayectoria garantizan nuestro nivel de servicio.')}</p>
           </div>
           
           <div className="bg-gray-50 dark:bg-dark-800/50 p-8 rounded-2xl text-center">
             <div className="mx-auto w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mb-6">
               <Target className="w-8 h-8 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('about.pilar2Title', 'Precisión')}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('about.pilar2Desc', 'Atención al detalle en cada servicio que ofrecemos.')}</p>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('about.pilar2Title', 'PrecisiÃ³n')}</h3>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('about.pilar2Desc', 'AtenciÃ³n al detalle en cada servicio que ofrecemos.')}</p>
           </div>
 
           <div className="bg-gray-50 dark:bg-dark-800/50 p-8 rounded-2xl text-center">
@@ -82,10 +82,11 @@ export const About: React.FC = () => {
               <ShieldCheck className="w-8 h-8 text-primary-600 dark:text-primary-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{t('about.pilar3Title', 'Confianza')}</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('about.pilar3Desc', 'Transparencia y seguridad en la gestión de turnos.')}</p>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">{t('about.pilar3Desc', 'Transparencia y seguridad en la gestiÃ³n de turnos.')}</p>
           </div>
         </div>
       </div>
     </div>
   );
 };
+

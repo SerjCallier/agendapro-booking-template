@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Search, Loader2, Calendar, ArrowLeft, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { fetchBlogPosts, type BlogPostData } from '../services/n8nService';
@@ -62,17 +62,23 @@ export const Blog: React.FC = () => {
             </p>
             <div className="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed">
               <p>
-                En la agenda online, cada detalle cuenta para que la experiencia del cliente sea impecable. Gestión de turnos, recordatorios automáticos y cobro de una pequeña seña por adelantado reducen las ausencias y mejoran la ocupación de tu agenda sin fricciones.
+                Los no-shows son uno de los mayores desafíos para los negocios de belleza y bienestar. Cada cita perdida no solo representa una pérdida de ingresos inmediata, sino también un tiempo valioso que podría haber sido utilizado para atender a otro cliente. Afortunadamente, existen estrategias efectivas para reducir significativamente los no-shows y optimizar su agenda.
               </p>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">El camino hacia un negocio más ordenado</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Estrategias probadas para reducir los no-shows</h3>
               <p>
-                Digitalizar la reserva no solo facilita la vida de tus clientes: también te da visibilidad sobre tu demanda real, te ayuda a anticipar la carga de trabajo de tu equipo y a comunicarte de forma cercana por WhatsApp cuando realmente importa.
+                <strong>1. Recordatorios automáticos por WhatsApp:</strong> Envía recordatorios 24 horas y 2 horas antes de la cita para reducir los olvidos.
               </p>
-              <blockquote className="border-l-4 border-primary-500 pl-6 my-8 italic text-lg text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-dark-800 p-6 rounded-r-xl">
-                "La calidad de nuestra atención define la experiencia del cliente. Cada detalle cuenta en el proceso de transformación personal."
-              </blockquote>
               <p>
-                Empezar es más simple de lo que parece: elegí tus servicios, definí tus horarios y compartí tu página con tus clientes habituales. Tu negocio gana una imagen profesional y un canal de reservas que funciona solo, las 24 horas.
+                <strong>2. Cobro de seña por adelantado:</strong> Un pequeño pago anticipado (20-30% del servicio) aumenta el compromiso del cliente y reduce las ausencias injustificadas.
+              </p>
+              <p>
+                <strong>3. Política de cancelación clara:</strong> Establece una política de cancelación con al menos 6 horas de antelación para permitir la reprogramación.
+              </p>
+              <p>
+                <strong>4. Lista de espera activa:</strong> Mantén una lista de espera para llenar rápidamente los espacios dejados por cancelaciones de último minuto.
+              </p>
+              <p>
+                Implementando estas estrategias, los negocios de belleza y bienestar pueden reducir los no-shows en hasta un 80% y mejorar significativamente su rendimiento.
               </p>
             </div>
           </div>
