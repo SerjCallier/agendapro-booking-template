@@ -34,7 +34,7 @@ export const Home: React.FC = () => {
       setServices(data);
       setLoading(false);
     });
-  }, []);
+  }, [business?.nicheId]);
 
   const handleOpenWidget = (service: ServiceData) => {
     setSelectedService(service);
