@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Scissors, Sparkles, HeartPulse, Paintbrush, Utensils, Trophy, Store, Phone, MapPin, Mail, X, Check } from 'lucide-react';
 import { NICHES, type Niche, type NicheId } from '../config/niches';
-import { saveBusinessState } from '../services/businessState';
+import { getBusinessState, saveBusinessState } from '../services/businessState';
 
 interface OnboardingWizardProps {
   open: boolean;
@@ -48,6 +48,21 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({ open, onClos
     email: '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
+
+  // When the wizard opens, prefill with the current business state so
+  // "Personalizar demo" / "Editar" always starts from real data, never empty.
+  useEffect(() => {
+    if (!open) return;
+    const business = getBusinessState();
+    setForm({
+      nicheId: business?.nicheId ?? 'barber',
+      name: business?.name ?? '',
+      phone: business?.phone ?? '',
+      address: business?.address ?? '',
+      email: business?.email ?? '',
+    });
+    setErrors({});
+  }, [open]);
 
   const selectedNiche: Niche | undefined = useMemo(
     () => NICHES.find((niche) => niche.id === form.nicheId),
