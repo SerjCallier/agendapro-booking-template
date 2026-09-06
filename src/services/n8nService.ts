@@ -11,18 +11,6 @@ const TEAM_URL = import.meta.env.VITE_N8N_TEAM_URL;
 const BLOG_URL = import.meta.env.VITE_N8N_BLOG_URL;
 const BOOKING_URL = import.meta.env.VITE_N8N_BOOKING_URL;
 
-/**
- * Fallback services for the demo: niche preloaded defaults when a personalized
- * business exists, otherwise the generic KlierBook catalog.
- */
-const fallbackServices = (): ServiceData[] => {
-  const business = getBusinessState();
-  if (business) {
-    return getNicheById(business.nicheId)?.defaultServices ?? mockServices;
-  }
-  return mockServices;
-};
-
 // Simulando la respuesta de n8n leyendo Google Sheets (Fallback para desarrollo)
 export const mockServices: ServiceData[] = defaultServices;
 
@@ -47,14 +35,21 @@ export const mockBlogPosts: BlogPostData[] = [
  * Si la URL no está definida o falla, retorna los mocks.
  */
 export const fetchServices = async (): Promise<ServiceData[]> => {
-  if (!SERVICES_URL) return fallbackServices();
+  // Personalized demo: the preloaded niche defaults ALWAYS win. The owner
+  // never enters prices/services, so the configured n8n catalog (which belongs
+  // to the generic demo) must not override the selected niche's market defaults.
+  const business = getBusinessState();
+  if (business) {
+    return getNicheById(business.nicheId)?.defaultServices ?? mockServices;
+  }
+  if (!SERVICES_URL) return mockServices;
   try {
     const response = await fetch(SERVICES_URL);
     if (!response.ok) throw new Error('Network response was not ok');
     return await response.json();
   } catch (error) {
     console.error('Error fetching services:', error);
-    return fallbackServices();
+    return mockServices;
   }
 };
 
