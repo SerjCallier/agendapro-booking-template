@@ -6,7 +6,9 @@
       "nav": "Home",
       "title": "Book your appointment easy and fast",
       "tagline": "Choose the service, select the time that fits you best and book securing your spot instantly with a small deposit.",
+      "demoTitle": "{{negocio}}: online booking for {{rubro}}",
       "ourServices": "Our Services",
+      "ourServicesNiche": "Default services and prices for {{rubro}}. You will be able to edit them in your final version.",
       "locationTitle": "Visit Us and Relax",
       "locationSubtitle": "We are located in the heart of the city. Book your appointment online, come by, and let our professionals take care of the rest.",
       "locationLabel": "Location",
@@ -16,12 +18,67 @@
       "sundays": "Sundays:",
       "closed": "Closed",
       "cta": "See Catalog & Book",
-      "mapTitle": "Saloon location map",
+      "mapTitle": "Business location map",
+      "mapLoading": "Locating address...",
+      "mapUnavailable": "We could not generate the map for this address.",
+      "offerWhatsAppMessage": "Hi KlierBook! I want a personalized demo for my business.",
+      "offerWhatsAppCta": "Contact via WhatsApp",
       "service": {
         "S01": { "name": "Advised Cut & Grooming", "desc": "Classic or modern cut with precise beard grooming. Includes washing." },
         "S02": { "name": "VIP Treatment & Relax", "desc": "Complete experience: cut, hair spa, facial cleaning and courtesy drinks." },
         "S03": { "name": "Express Facial Cleaning", "desc": "Quick skin treatment to brighten and clean pores before an event." }
       }
+    },
+    "niche": {
+      "barber": {
+        "label": "Barbershop",
+        "tagline": "Classic and modern cuts with online booking. Reserve in seconds and secure your spot."
+      },
+      "estetica": {
+        "label": "Beauty center",
+        "tagline": "Beauty and relaxation treatments. Book your appointment online with a deposit."
+      },
+      "clinica": {
+        "label": "Aesthetic clinic",
+        "tagline": "Medical and clinical aesthetics with professional appointment management and reminders."
+      },
+      "nails": {
+        "label": "Nails studio",
+        "tagline": "Manicure, pedicure and nail extensions. Book your appointment online instantly."
+      },
+      "gastronomia": {
+        "label": "Restaurant & Gastronomy",
+        "tagline": "Interactive digital menu, table reservations and takeaway orders directly to your WhatsApp."
+      },
+      "sports": {
+        "label": "Sports Complex & Padel",
+        "tagline": "Padel & Football pitch bookings and coaching with automatic deposit 24/7."
+      }
+    },
+    "onboarding": {
+      "title": "Personalize your demo",
+      "subtitle": "Fill in your business details and generate your personalized demo instantly.",
+      "nicheLabel": "Business niche",
+      "nicheHint": "Services and prices for your niche are preloaded automatically.",
+      "nicheServices": "Preloaded services for this niche:",
+      "nameLabel": "Business name",
+      "namePlaceholder": "e.g. Don José Barbershop",
+      "phoneLabel": "Phone / WhatsApp",
+      "phonePlaceholder": "e.g. 11 2345 6789",
+      "addressLabel": "Address",
+      "addressPlaceholder": "e.g. Av. Corrientes 1234, CABA",
+      "emailLabel": "Email (optional)",
+      "emailPlaceholder": "e.g. hello@yourbusiness.com",
+      "submit": "Generate my demo",
+      "dismiss": "Not now",
+      "brandBadge": "Personalized demo",
+      "brandNote": "We only ask for the details you know by memory. No need to enter services or prices.",
+      "customize": "Personalize demo",
+      "editDemo": "Edit",
+      "errorName": "Enter your business name.",
+      "errorPhone": "Enter a valid phone number (at least 8 digits).",
+      "errorAddress": "Enter your business address.",
+      "errorEmail": "Enter a valid email address."
     },
     "about": {
       "nav": "About",
@@ -88,10 +145,19 @@
       "successTitle": "Appointment Booked Successfully!",
       "successMessage": "We have received your deposit. Your appointment is now scheduled in our system.",
       "finalStepTitle": "Recommended final step:",
-      "whatsappPrompt": "We have sent the details to your email, but if you want to receive your receipt and instructions quickly, send us an automatic WhatsApp.",
+      "whatsappPrompt": "We have sent the details to your email. Save the appointment to your calendar or copy your reservation summary.",
       "saveToCalendar": "Save to Calendar",
       "viewOnMap": "View on Map",
-      "confirmWhatsApp": "Confirm via WhatsApp",
+      "demoReservationTitle": "Appointment registered in demo mode",
+      "demoReservationMessage": "In this demo the confirmation is registered in the system and is not sent via WhatsApp. In your final version, the customer receives the receipt automatically.",
+      "copyReservation": "Copy reservation summary",
+      "copyReservationBody": "My reservation summary:",
+      "copyService": "Service",
+      "copyDate": "Date",
+      "copyName": "Name",
+      "copyEmail": "Email",
+      "copyPhone": "Phone",
+      "copied": "Summary copied",
       "backToCatalog": "Back to catalog"
     }
   }

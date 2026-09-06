@@ -1,5 +1,7 @@
 import { type ServiceData, type TeamMemberData, type BlogPostData } from '../types';
 import { defaultServices, businessConfig, defaultTeam } from '../config/businessConfig';
+import { getNicheById } from '../config/niches';
+import { getBusinessState } from './businessState';
 
 export type { ServiceData, TeamMemberData, BlogPostData };
 
@@ -8,6 +10,18 @@ const SERVICES_URL = import.meta.env.VITE_N8N_SERVICES_URL;
 const TEAM_URL = import.meta.env.VITE_N8N_TEAM_URL;
 const BLOG_URL = import.meta.env.VITE_N8N_BLOG_URL;
 const BOOKING_URL = import.meta.env.VITE_N8N_BOOKING_URL;
+
+/**
+ * Fallback services for the demo: niche preloaded defaults when a personalized
+ * business exists, otherwise the generic KlierBook catalog.
+ */
+const fallbackServices = (): ServiceData[] => {
+  const business = getBusinessState();
+  if (business) {
+    return getNicheById(business.nicheId)?.defaultServices ?? mockServices;
+  }
+  return mockServices;
+};
 
 // Simulando la respuesta de n8n leyendo Google Sheets (Fallback para desarrollo)
 export const mockServices: ServiceData[] = defaultServices;
@@ -33,14 +47,14 @@ export const mockBlogPosts: BlogPostData[] = [
  * Si la URL no está definida o falla, retorna los mocks.
  */
 export const fetchServices = async (): Promise<ServiceData[]> => {
-  if (!SERVICES_URL) return mockServices;
+  if (!SERVICES_URL) return fallbackServices();
   try {
     const response = await fetch(SERVICES_URL);
     if (!response.ok) throw new Error('Network response was not ok');
     return await response.json();
   } catch (error) {
     console.error('Error fetching services:', error);
-    return mockServices;
+    return fallbackServices();
   }
 };
 

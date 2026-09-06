@@ -6,7 +6,9 @@
       "nav": "Inicio",
       "title": "Agenda tu turno fácil y rápido",
       "tagline": "Elige el servicio, selecciona el horario que mejor te quede y reserva asegurando tu lugar al instante con una pequeña seña.",
+      "demoTitle": "{{negocio}}: turnos online para {{rubro}}",
       "ourServices": "Nuestros Servicios",
+      "ourServicesNiche": "Servicios y precios por defecto para {{rubro}}. En tu versión final podrás editarlos.",
       "locationTitle": "Visítanos y Relájate",
       "locationSubtitle": "Nos encontramos en el corazón de la ciudad. Reserva tu turno online, acércate y deja que nuestros profesionales se encarguen del resto.",
       "locationLabel": "Ubicación",
@@ -16,12 +18,67 @@
       "sundays": "Domingos:",
       "closed": "Cerrado",
       "cta": "Ver Catálogo y Reservar",
-      "mapTitle": "Mapa de ubicación del salón",
+      "mapTitle": "Mapa de ubicación del negocio",
+      "mapLoading": "Localizando dirección...",
+      "mapUnavailable": "No pudimos generar el mapa para esta dirección.",
+      "offerWhatsAppMessage": "Hola KlierBook! Quiero una demo personalizada para mi negocio.",
+      "offerWhatsAppCta": "Contacto por WhatsApp",
       "service": {
         "S01": { "name": "Corte y Perfilado Asesorado", "desc": "Corte clásico o moderno con perfilado de barba preciso. Incluye lavado." },
         "S02": { "name": "Tratamiento VIP y Relax", "desc": "Experiencia completa: corte, spa capilar, limpieza facial y tragos de cortesía." },
         "S03": { "name": "Limpieza Facial Exprés", "desc": "Tratamiento de piel rápido para iluminar y limpiar poros antes de un evento." }
       }
+    },
+    "niche": {
+      "barber": {
+        "label": "Barbería",
+        "tagline": "Cortes clásicos y modernos con turno online. Reserva en segundos y asegura tu lugar."
+      },
+      "estetica": {
+        "label": "Centro de estética",
+        "tagline": "Tratamientos de estética y relax. Agenda tu turno online con seña incluida."
+      },
+      "clinica": {
+        "label": "Clínica estética",
+        "tagline": "Medicina y estética clínica con gestión profesional de turnos y recordatorios."
+      },
+      "nails": {
+        "label": "Uñas y manos",
+        "tagline": "Manicure, pedicure y esculpidas. Reserva tu turno online al instante."
+      },
+      "gastronomia": {
+        "label": "Restaurante y Gastronomía",
+        "tagline": "Menú digital interactivo, reserva de mesas y pedidos takeaway directo a tu WhatsApp."
+      },
+      "sports": {
+        "label": "Complejo Deportivo y Pádel",
+        "tagline": "Alquiler de canchas y clases de pádel / fútbol con seña automática 24/7."
+      }
+    },
+    "onboarding": {
+      "title": "Personaliza tu demo",
+      "subtitle": "Completa los datos de tu negocio y genera tu demo personalizada al instante.",
+      "nicheLabel": "Rubro del negocio",
+      "nicheHint": "Los servicios y precios de tu rubro se precargan automáticamente.",
+      "nicheServices": "Servicios precargados para este rubro:",
+      "nameLabel": "Nombre del negocio",
+      "namePlaceholder": "Ej. Barbería Don José",
+      "phoneLabel": "Teléfono / WhatsApp",
+      "phonePlaceholder": "Ej. 11 2345 6789",
+      "addressLabel": "Dirección",
+      "addressPlaceholder": "Ej. Av. Corrientes 1234, CABA",
+      "emailLabel": "Correo electrónico (opcional)",
+      "emailPlaceholder": "Ej. hola@tunegocio.com",
+      "submit": "Generar mi demo",
+      "dismiss": "Ahora no",
+      "brandBadge": "Demo personalizada",
+      "brandNote": "Solo pedimos los datos que conoces de memoria. No necesitas cargar servicios ni precios.",
+      "customize": "Personalizar demo",
+      "editDemo": "Editar",
+      "errorName": "Ingresa el nombre de tu negocio.",
+      "errorPhone": "Ingresa un teléfono válido (mínimo 8 dígitos).",
+      "errorAddress": "Ingresa la dirección de tu negocio.",
+      "errorEmail": "Ingresa un correo electrónico válido."
     },
     "about": {
       "nav": "Nosotros",
@@ -88,10 +145,19 @@
       "successTitle": "¡Turno Reservado con Éxito!",
       "successMessage": "Hemos recibido tu seña correctamente. Tu turno ya está agendado en nuestro sistema.",
       "finalStepTitle": "Paso final recomendado:",
-      "whatsappPrompt": "Te enviamos el detalle por correo, pero si quieres recibir tu comprobante rápido e instrucciones, envíanos un WhatsApp automático.",
+      "whatsappPrompt": "Te enviamos el detalle por correo. Guarda el resumen en tu calendario o copia los datos de tu reserva.",
       "saveToCalendar": "Guardar en Calendar",
       "viewOnMap": "Ver en Mapa",
-      "confirmWhatsApp": "Confirmar por WhatsApp",
+      "demoReservationTitle": "Reserva registrada en modo demo",
+      "demoReservationMessage": "En esta demo la confirmación se registra en el sistema y no se envía por WhatsApp. En la versión final, el cliente recibe el comprobante automáticamente.",
+      "copyReservation": "Copiar resumen de la reserva",
+      "copyReservationBody": "Resumen de mi reserva:",
+      "copyService": "Servicio",
+      "copyDate": "Fecha",
+      "copyName": "Nombre",
+      "copyEmail": "Email",
+      "copyPhone": "Teléfono",
+      "copied": "Resumen copiado",
       "backToCatalog": "Volver al catálogo"
     }
   }

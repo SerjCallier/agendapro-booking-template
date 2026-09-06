@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Calendar, Info, BookOpen, Menu, X, Sun, Moon } from 'lucide-react';
+import { Calendar, Info, BookOpen, Menu, X, Sun, Moon, Palette, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { businessConfig } from '../config/businessConfig';
+import { getNicheById } from '../config/niches';
+import { useBusinessState } from '../services/businessState';
+import { useNicheTheme } from '../hooks/useNicheTheme';
 import { LanguageSelector } from '../components/LanguageSelector';
+import { OnboardingWizard } from '../components/OnboardingWizard';
+
+const WIZARD_DISMISSED_KEY = 'klierbook:wizard-dismissed';
 
 export const MainLayout: React.FC = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  // Personalized demo state + niche theme (CSS variables + font family)
+  const business = useBusinessState();
+  const niche = business ? getNicheById(business.nicheId) ?? null : null;
+  useNicheTheme(niche);
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -20,6 +31,30 @@ export const MainLayout: React.FC = () => {
     return true;
   });
 
+  // Abrir el wizard automáticamente la primera vez si aún no hay demo personalizada
+  const [isWizardOpen, setIsWizardOpen] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    if (business) return false;
+    try {
+      return !sessionStorage.getItem(WIZARD_DISMISSED_KEY);
+    } catch {
+      return true;
+    }
+  });
+
+  const handleCloseWizard = () => {
+    if (!business) {
+      try {
+        sessionStorage.setItem(WIZARD_DISMISSED_KEY, '1');
+      } catch {
+        // sessionStorage no disponible: no bloquear el cierre
+      }
+    }
+    setIsWizardOpen(false);
+  };
+
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -30,16 +65,17 @@ export const MainLayout: React.FC = () => {
     }
   }, [isDarkMode]);
 
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
-
   const navLinks = [
     { name: t('home.nav'), path: '/', icon: <Calendar className="w-5 h-5 mr-2" /> },
     { name: t('about.nav'), path: '/nosotros', icon: <Info className="w-5 h-5 mr-2" /> },
     { name: t('blog.nav'), path: '/blog', icon: <BookOpen className="w-5 h-5 mr-2" /> },
   ];
 
+  const fontFamily = niche?.theme.fontFamily ?? businessConfig.theme.fontFamily;
+  const brandName = business?.name ?? businessConfig.name;
+
   return (
-    <div className={`flex flex-col min-h-screen font-${businessConfig.theme.fontFamily}`}>
+    <div className={`flex flex-col min-h-screen font-${fontFamily}`}>
       {/* Navbar Premium con Glassmorphism */}
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-dark-900/80 border-b border-gray-200 dark:border-dark-700 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,7 +86,7 @@ export const MainLayout: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d={businessConfig.logoSvg} />
                 </svg>
                 <span className="font-bold text-2xl tracking-tight bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent">
-                  {businessConfig.name}
+                  {brandName}
                 </span>
               </Link>
             </div>
@@ -71,6 +107,15 @@ export const MainLayout: React.FC = () => {
                   {link.name}
                 </Link>
               ))}
+
+              {/* Personalizar demo */}
+              <button
+                onClick={() => setIsWizardOpen(true)}
+                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-dark-800 rounded-lg transition-colors"
+              >
+                <Palette className="w-4 h-4" />
+                {t('onboarding.customize', 'Personalizar demo')}
+              </button>
 
               <LanguageSelector />
 
@@ -123,10 +168,44 @@ export const MainLayout: React.FC = () => {
                   {link.name}
                 </Link>
               ))}
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsWizardOpen(true);
+                }}
+                className="flex items-center pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-primary-600 dark:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800"
+              >
+                <Palette className="w-5 h-5 mr-2" />
+                {t('onboarding.customize', 'Personalizar demo')}
+              </button>
             </div>
           </div>
         )}
       </nav>
+
+      {/* Banner DEMO PERSONALIZADA (visible cuando existe una demo personalizada) */}
+      {business && niche && (
+        <div className="bg-primary-600 text-white text-sm font-medium">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
+            <p className="flex items-center gap-2 truncate">
+              <Sparkles className="w-4 h-4 flex-shrink-0" />
+              <span className="uppercase tracking-wider font-bold flex-shrink-0">
+                {t('onboarding.brandBadge', 'Demo personalizada')}
+              </span>
+              <span className="hidden sm:inline text-white/90 truncate">
+                — {business.name} · {t(niche.labelKey, niche.label)}
+              </span>
+            </p>
+            <button
+              onClick={() => setIsWizardOpen(true)}
+              className="flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/15 hover:bg-white/25 transition-colors text-xs font-semibold uppercase tracking-wide"
+            >
+              <Palette className="w-3.5 h-3.5" />
+              {t('onboarding.editDemo', 'Editar')}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Main Content Area */}
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
@@ -137,7 +216,7 @@ export const MainLayout: React.FC = () => {
       <footer className="bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-dark-700 mt-auto transition-colors duration-300">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-3">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} {businessConfig.name}. {t('footer.allRightsReserved', 'Todos los derechos reservados.')}
+            &copy; {new Date().getFullYear()} {brandName}. {t('footer.allRightsReserved', 'Todos los derechos reservados.')}
           </p>
           <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500 uppercase tracking-wider font-medium">
             <span>Powered by</span>
@@ -147,6 +226,9 @@ export const MainLayout: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Onboarding Wizard (personalized demo) */}
+      <OnboardingWizard open={isWizardOpen} onClose={handleCloseWizard} />
     </div>
   );
 };

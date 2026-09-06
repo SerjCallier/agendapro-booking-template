@@ -4,6 +4,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  // Clases dinámicas por nicho (font-sans | font-serif | font-display) aplicadas en runtime
+  safelist: [
+    { pattern: /^font-(sans|serif|display)$/ },
+  ],
   darkMode: 'class',
   theme: {
     extend: {
